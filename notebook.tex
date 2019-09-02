@@ -1,0 +1,1120 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Model2\_eval\&predict}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{}import things to use}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow}
+        \PY{k+kn}{import} \PY{n+nn}{keras}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{Sequential}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Activation}\PY{p}{,} \PY{n}{Masking}\PY{p}{,} \PY{n}{Dense} 
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Convolution2D} \PY{k}{as} \PY{n}{Conv2D} 
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{GlobalAveragePooling2D}\PY{p}{,} \PY{n}{GlobalMaxPooling2D} 
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Softmax}\PY{p}{,} \PY{n}{ReLU}\PY{p}{,} \PY{n}{BatchNormalization}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{optimizers} \PY{k}{import} \PY{n}{Adam}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{callbacks} \PY{k}{import} \PY{n}{EarlyStopping}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{utils} \PY{k}{import} \PY{n}{np\PYZus{}utils}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics} 
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{optimizers} \PY{k}{import} \PY{n}{SGD}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{finished imports!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Using TensorFlow backend.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+finished imports!
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}?}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{backend}\PY{n+nn}{.}\PY{n+nn}{tensorflow\PYZus{}backend} \PY{k}{import} \PY{n}{set\PYZus{}session}
+        \PY{n}{config} \PY{o}{=} \PY{n}{tensorflow}\PY{o}{.}\PY{n}{ConfigProto}\PY{p}{(}\PY{p}{)}
+        \PY{n}{config}\PY{o}{.}\PY{n}{intra\PYZus{}op\PYZus{}parallelism\PYZus{}threads} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{config}\PY{o}{.}\PY{n}{intra\PYZus{}op\PYZus{}parallelism\PYZus{}threads}\PY{p}{)}
+        \PY{n}{set\PYZus{}session}\PY{p}{(}\PY{n}{tensorflow}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{n}{config}\PY{o}{=}\PY{n}{config}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{find\PYZus{}max}\PY{p}{(}\PY{n}{list\PYZus{}path}\PY{p}{,} \PY{n}{list\PYZus{}name}\PY{p}{,} \PY{n}{files\PYZus{}path}\PY{p}{)}\PY{p}{:} 
+            \PY{c+c1}{\PYZsh{}change to the directory where list of STFT files is }
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{list\PYZus{}path}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}loop through to find maxTime, Don\PYZsq{}t need to save anything else though}
+            \PY{n}{maxTime} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{made variable maxTime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}open file (lists all train .npy STFT file names) }
+            \PY{n}{file} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{list\PYZus{}name}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+            \PY{n}{data} \PY{o}{=} \PY{n}{file}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{file}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{got data files in a list}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}print(data)}
+        
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{files\PYZus{}path}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed to files folder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{k}{for} \PY{n}{array} \PY{o+ow}{in} \PY{n}{data}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}find cols (number of time steps) of each STFT and save longest one}
+                \PY{n}{curSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+                \PY{n}{rows}\PY{p}{,} \PY{n}{cols} \PY{o}{=} \PY{n}{curSTFT}\PY{o}{.}\PY{n}{shape}
+                \PY{k}{if} \PY{p}{(}\PY{n}{cols}\PY{o}{\PYZgt{}}\PY{n}{maxTime}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{maxTime} \PY{o}{=} \PY{n}{cols}
+                \PY{k}{if} \PY{p}{(}\PY{n}{rows}\PY{o}{!=}\PY{l+m+mi}{1025}\PY{p}{)}\PY{p}{:}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Error, not 1025 STFT coefficients}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+            
+            \PY{k}{return} \PY{n}{maxTime} 
+        
+        \PY{n}{trainingMax} \PY{o}{=} \PY{n}{find\PYZus{}max}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{trainListALL.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{trainingMax}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{found trainingMax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+made variable maxTime
+got data files in a list
+changed to files folder
+3559
+found trainingMax
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}labels\PYZus{}and\PYZus{}samples}\PY{p}{(}\PY{n}{path}\PY{p}{,} \PY{n}{file}\PY{p}{,} \PY{n}{datapath}\PY{p}{,} \PY{n}{maxTime}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}change to the directory where list of STFT files is }
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{path}\PY{p}{)}
+            
+            \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{paddedSTFTs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{made variables}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}open file (lists all train .npy STFT file names) }
+            \PY{n}{file} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}note, ran with 169 in TopList, could not handle all 676}
+            \PY{n}{data} \PY{o}{=} \PY{n}{file}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{file}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{got data files in a list}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+        
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{datapath}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed to files folder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{k}{for} \PY{n}{array} \PY{o+ow}{in} \PY{n}{data}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}loop through to find out if file is a buzz or minibuzz, and add label accordingly }
+                \PY{n}{nameParse} \PY{o}{=} \PY{n}{array}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}print(nameParse)}
+                \PY{n}{typeParse} \PY{o}{=} \PY{n}{nameParse}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{u}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}print(typeParse)}
+                \PY{k}{if}\PY{p}{(}\PY{n}{typeParse}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{}buzz = 1 }
+                    \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{k}{elif}\PY{p}{(}\PY{n}{typeParse}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{minib}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{}minibuzz = 0}
+                    \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:} 
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Error, not a buzz or minibuzz!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{labels}\PY{p}{)} 
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label loop done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{k}{for} \PY{n}{array} \PY{o+ow}{in} \PY{n}{data}\PY{p}{:} 
+                \PY{c+c1}{\PYZsh{}loop though STFTs again to zero pad, transpose, and reshape soo that there is one channel  }
+                \PY{c+c1}{\PYZsh{}NOTE: must be done after we definitvely know the max number of time steps}
+                \PY{n}{curSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+                \PY{n}{rows}\PY{p}{,} \PY{n}{cols} \PY{o}{=} \PY{n}{curSTFT}\PY{o}{.}\PY{n}{shape}
+        
+                \PY{n}{zeroPad} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{rows}\PY{p}{,}\PY{n}{maxTime}\PY{o}{\PYZhy{}}\PY{n}{cols}\PY{p}{)}\PY{p}{)}
+                \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{curSTFT}\PY{p}{,} \PY{n}{zeroPad}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+        
+                \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{)}
+                \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{,} \PY{n}{paddedSTFT}\PY{o}{.}\PY{n}{shape} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+        
+                \PY{n}{paddedSTFTs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{)}
+        
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample loop done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+            \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}one hot encoding for labels}
+            \PY{n}{hotlabels} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{utils}\PY{o}{.}\PY{n}{to\PYZus{}categorical}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{n}{num\PYZus{}classes}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{samples} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{paddedSTFTs}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hotlabels and samples in np arrays}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{k}{return} \PY{n}{hotlabels}\PY{p}{,} \PY{n}{samples}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{done with get\PYZus{}labels\PYZus{}get\PYZus{}samples}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+done with get\_labels\_get\_samples
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{data\PYZus{}generator}\PY{p}{(}\PY{n}{path}\PY{p}{,} \PY{n}{file}\PY{p}{,} \PY{n}{datapath}\PY{p}{,} \PY{n}{bs}\PY{p}{,} \PY{n}{maxTime}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} open the text file for reading}
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{path}\PY{p}{)}
+            \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{k}{while} \PY{k+kc}{True}\PY{p}{:} 
+                
+                \PY{c+c1}{\PYZsh{} initialize our batches of images and labels}
+                \PY{n}{samples} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+                \PY{c+c1}{\PYZsh{} keep looping until we reach our batch size}
+                \PY{k}{while} \PY{n+nb}{len}\PY{p}{(}\PY{n}{samples}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{bs}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} attempt to read the next line of the text file}
+                    \PY{n}{line} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{readline}\PY{p}{(}\PY{p}{)}
+                    
+                    \PY{c+c1}{\PYZsh{} check to see if the line is empty, indicating we have}
+                    \PY{c+c1}{\PYZsh{} reached the end of the file}
+                    \PY{k}{if} \PY{n}{line} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{} reset the file pointer to the beginning of the file}
+                        \PY{c+c1}{\PYZsh{} and re\PYZhy{}read the line}
+                        \PY{n}{f}\PY{o}{.}\PY{n}{seek}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+                        \PY{n}{line} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{readline}\PY{p}{(}\PY{p}{)}
+                        \PY{c+c1}{\PYZsh{} if we are evaluating we should now break from our}
+        				\PY{c+c1}{\PYZsh{} loop to ensure we don\PYZsq{}t continue to fill up the}
+        				\PY{c+c1}{\PYZsh{} batch from samples at the beginning of the file}
+                        \PY{k}{if} \PY{n}{mode} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{eval}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                            \PY{k}{break}
+            
+                    \PY{c+c1}{\PYZsh{} construct list of labels: find out if file is a buzz or minibuzz, and add label accordingly }
+                    \PY{n}{nameParse} \PY{o}{=} \PY{n}{line}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                    \PY{c+c1}{\PYZsh{}print(nameParse)}
+                    \PY{n}{typeParse} \PY{o}{=} \PY{n}{nameParse}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{u}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                    \PY{c+c1}{\PYZsh{}print(typeParse)}
+                    \PY{k}{if}\PY{p}{(}\PY{n}{typeParse}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{}buzz = 1 }
+                        \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+                    \PY{k}{elif}\PY{p}{(}\PY{n}{typeParse}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{minib}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{}minibuzz = 0}
+                        \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+                    \PY{k}{else}\PY{p}{:} 
+                        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Error, not a buzz or minibuzz!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+                    \PY{c+c1}{\PYZsh{}switch to aws\PYZus{}pilotwhales2 folder}
+                    \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{n}{datapath}\PY{p}{)}
+                    \PY{c+c1}{\PYZsh{}print(\PYZsq{}changed to aws\PYZus{}pilotwhales2 folder\PYZsq{})}
+                    
+                    \PY{c+c1}{\PYZsh{}construct list of samples}
+                    \PY{n}{lineParse} \PY{o}{=} \PY{n}{line}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                    \PY{c+c1}{\PYZsh{}print(lineParse)}
+                    \PY{c+c1}{\PYZsh{}print(os.getcwd())}
+                    \PY{n}{curSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{lineParse}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{rows}\PY{p}{,} \PY{n}{cols} \PY{o}{=} \PY{n}{curSTFT}\PY{o}{.}\PY{n}{shape}
+            
+                    \PY{n}{zeroPad} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{rows}\PY{p}{,}\PY{n}{maxTime}\PY{o}{\PYZhy{}}\PY{n}{cols}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{curSTFT}\PY{p}{,} \PY{n}{zeroPad}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+            
+                    \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{)}
+                    \PY{n}{paddedSTFT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{,} \PY{n}{paddedSTFT}\PY{o}{.}\PY{n}{shape} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+            
+                    \PY{n}{samples}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{paddedSTFT}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}convert from lists to numpy arrays}
+                \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}one hot encoding for labels}
+                \PY{n}{hotlabels} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{utils}\PY{o}{.}\PY{n}{to\PYZus{}categorical}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{n}{num\PYZus{}classes}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{samples} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{samples}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}print(\PYZsq{}hotlabels and samples in np arrays\PYZsq{})}
+            
+                \PY{c+c1}{\PYZsh{} yield the batch to the calling function}
+                \PY{k}{if} \PY{n}{mode} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{predict}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                    \PY{k}{yield}\PY{p}{(}\PY{n}{samples}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:} 
+                    \PY{k}{yield} \PY{p}{(}\PY{n}{samples}\PY{p}{,} \PY{n}{hotlabels}\PY{p}{)}
+                
+        \PY{c+c1}{\PYZsh{} initialize both the training and validation generators}
+        \PY{n}{trainGen} \PY{o}{=} \PY{n}{data\PYZus{}generator}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{trainList.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{n}{trainingMax}\PY{p}{,} \PY{n}{mode} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{generated training set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{validGen} \PY{o}{=} \PY{n}{data\PYZus{}generator}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{validList.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{n}{trainingMax}\PY{p}{,} \PY{n}{mode} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{generated vaildation set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+generated training set
+generated vaildation set
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}MAKE MODEL AND COMPILE IT}
+        
+        \PY{c+c1}{\PYZsh{}layer 0: input}
+        \PY{c+c1}{\PYZsh{}labels[], samples[] (maxTime rows, 1025 cols) each in trainGen and validGen}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ready to start model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} build model}
+        \PY{n}{model} \PY{o}{=} \PY{n}{Sequential}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{made model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}NOTE, CHANGED PADDING ON 2D CONVOLUTIONS from \PYZsq{}valid\PYZsq{}=no paddinng to \PYZsq{}same\PYZsq{}=padding so input and output are same dimensions}
+        
+        \PY{c+c1}{\PYZsh{}layer 1: 2D convolution between input and 256 filters with 1 row and 1025 cols}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{trainingMax}\PY{p}{)}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{Conv2D}\PY{p}{(}\PY{l+m+mi}{256}\PY{p}{,} \PY{n}{input\PYZus{}shape} \PY{o}{=} \PY{p}{[}\PY{n}{trainingMax}\PY{p}{,}\PY{l+m+mi}{1025}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{kernel\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1025}\PY{p}{]}\PY{p}{,} \PY{n}{strides}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{valid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data\PYZus{}format}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{channels\PYZus{}last}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dilation\PYZus{}rate}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}uniform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{activity\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{kernel\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}batch normalization\PYZhy{} add in layer? don\PYZsq{}t understand parameters well}
+        \PY{c+c1}{\PYZsh{}model.add(BatchNormalization(axis=\PYZhy{}1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, gamma\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, moving\PYZus{}mean\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, moving\PYZus{}variance\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, beta\PYZus{}regularizer=None, gamma\PYZus{}regularizer=None, beta\PYZus{}constraint=None, gamma\PYZus{}constraint=None)}
+        \PY{c+c1}{\PYZsh{}reLU layer}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{ReLU}\PY{p}{(}\PY{n}{max\PYZus{}value}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{negative\PYZus{}slope}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{threshold}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 1 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}layer 2: 2D convolution between output of layer 1 and 256 filters with 3 rows and 256 cols}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{Conv2D}\PY{p}{(}\PY{l+m+mi}{256}\PY{p}{,} \PY{n}{kernel\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{strides}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data\PYZus{}format}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{channels\PYZus{}last}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dilation\PYZus{}rate}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}uniform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{activity\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{kernel\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}batch normalization\PYZhy{} add in layer? don\PYZsq{}t understand parameters well}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}model.add(BatchNormalization(axis=\PYZhy{}1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, gamma\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, moving\PYZus{}mean\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, moving\PYZus{}variance\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, beta\PYZus{}regularizer=None, gamma\PYZus{}regularizer=None, beta\PYZus{}constraint=None, gamma\PYZus{}constraint=None)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}reLU layer}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{ReLU}\PY{p}{(}\PY{n}{max\PYZus{}value}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{negative\PYZus{}slope}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{threshold}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 2 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}layer 3: 2D convolution between output of layer 2 and 256 filters with 3 rows and 256 cols}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{Conv2D}\PY{p}{(}\PY{l+m+mi}{256}\PY{p}{,} \PY{n}{kernel\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{strides}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data\PYZus{}format}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{channels\PYZus{}last}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dilation\PYZus{}rate}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}uniform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{activity\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{kernel\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}batch normalization\PYZhy{} add in layer? don\PYZsq{}t understand parameters well}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}model.add(BatchNormalization(axis=\PYZhy{}1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, gamma\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, moving\PYZus{}mean\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, moving\PYZus{}variance\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, beta\PYZus{}regularizer=None, gamma\PYZus{}regularizer=None, beta\PYZus{}constraint=None, gamma\PYZus{}constraint=None)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}reLU layer}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{ReLU}\PY{p}{(}\PY{n}{max\PYZus{}value}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{negative\PYZus{}slope}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{threshold}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 3 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}layer 4: 2D convolution between output of layer 3 and 256 filters with 3 rows and 256 cols}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{Conv2D}\PY{p}{(}\PY{l+m+mi}{256}\PY{p}{,} \PY{n}{kernel\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{strides}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data\PYZus{}format}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{channels\PYZus{}last}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dilation\PYZus{}rate}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}uniform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{activity\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{kernel\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}batch normalization\PYZhy{} add in layer? don\PYZsq{}t understand parameters well}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}model.add(BatchNormalization(axis=\PYZhy{}1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, gamma\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, moving\PYZus{}mean\PYZus{}initializer=\PYZsq{}zeros\PYZsq{}, moving\PYZus{}variance\PYZus{}initializer=\PYZsq{}ones\PYZsq{}, beta\PYZus{}regularizer=None, gamma\PYZus{}regularizer=None, beta\PYZus{}constraint=None, gamma\PYZus{}constraint=None)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}reLU layer}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{ReLU}\PY{p}{(}\PY{n}{max\PYZus{}value}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{negative\PYZus{}slope}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{threshold}\PY{o}{=}\PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 4 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}layer 5: Global max pooling}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{GlobalMaxPooling2D}\PY{p}{(}\PY{n}{data\PYZus{}format}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{channels\PYZus{}last}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 5 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}layer 6: fully connected layer}
+        \PY{n}{model}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{softmax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}uniform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{activity\PYZus{}regularizer}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{kernel\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{bias\PYZus{}constraint}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer 6 done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Compile model [COMPILE]}
+        \PY{c+c1}{\PYZsh{}OLD COMPILE (for fit, not fit\PYZus{}generator)}
+        \PY{c+c1}{\PYZsh{}model.compile(optimizer=\PYZsq{}adam\PYZsq{}, loss=\PYZsq{}binary\PYZus{}crossentropy\PYZsq{}, metrics=[\PYZsq{}accuracy\PYZsq{}], loss\PYZus{}weights=None, sample\PYZus{}weight\PYZus{}mode=None, weighted\PYZus{}metrics=None, target\PYZus{}tensors=None)}
+        \PY{n}{opt} \PY{o}{=} \PY{n}{SGD}\PY{p}{(}\PY{n}{lr}\PY{o}{=}\PY{l+m+mf}{0.02}\PY{p}{)} \PY{c+c1}{\PYZsh{}note, can play with leraning rate and other parameters here}
+        \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{binary\PYZus{}crossentropy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{optimizer} \PY{o}{=} \PY{n}{opt}\PY{p}{,} \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{compiled}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ready to start model
+made model
+3559
+layer 1 done
+layer 2 done
+layer 3 done
+layer 4 done
+layer 5 done
+layer 6 done
+compiled
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                 Output Shape              Param \#   
+=================================================================
+conv2d\_1 (Conv2D)            (None, 3559, 1, 256)      262400    
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+re\_lu\_1 (ReLU)               (None, 3559, 1, 256)      0         
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+conv2d\_2 (Conv2D)            (None, 1780, 1, 256)      196608    
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+re\_lu\_2 (ReLU)               (None, 1780, 1, 256)      0         
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+conv2d\_3 (Conv2D)            (None, 890, 1, 256)       196608    
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+re\_lu\_3 (ReLU)               (None, 890, 1, 256)       0         
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+conv2d\_4 (Conv2D)            (None, 445, 1, 256)       196608    
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+re\_lu\_4 (ReLU)               (None, 445, 1, 256)       0         
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+global\_max\_pooling2d\_1 (Glob (None, 256)               0         
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+dense\_1 (Dense)              (None, 2)                 512       
+=================================================================
+Total params: 852,736
+Trainable params: 852,736
+Non-trainable params: 0
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+None
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{}Now let us train our model [FIT]}
+        \PY{n}{ES} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}\PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}loss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{min\PYZus{}delta}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{baseline}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{restore\PYZus{}best\PYZus{}weights}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}with fit\PYZus{}generator}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[INFO] training w/ generator...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{model}\PY{o}{.}\PY{n}{fit\PYZus{}generator}\PY{p}{(}\PY{n}{trainGen}\PY{p}{,} \PY{n}{steps\PYZus{}per\PYZus{}epoch}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{,} \PY{n}{epochs}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{ES}\PY{p}{]}\PY{p}{,} \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{n}{validGen}\PY{p}{,} \PY{n}{validation\PYZus{}steps}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{class\PYZus{}weight}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{max\PYZus{}queue\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{workers}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{use\PYZus{}multiprocessing}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{initial\PYZus{}epoch}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ran fit\PYZus{}generator}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}with fit}
+        \PY{c+c1}{\PYZsh{}model.fit(x=samples, y=hotlabels, batch\PYZus{}size=13, epochs=5, verbose=2, callbacks=[ES], validation\PYZus{}split=0.2, validation\PYZus{}data=None, shuffle=True, class\PYZus{}weight=None, sample\PYZus{}weight=None, initial\PYZus{}epoch=0, steps\PYZus{}per\PYZus{}epoch=None, validation\PYZus{}steps=None)}
+        \PY{c+c1}{\PYZsh{}print(\PYZsq{}ran fit\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[INFO] training w/ generator{\ldots}
+Epoch 1/5
+ - 104s - loss: 0.6582 - acc: 0.8462 - val\_loss: 0.5955 - val\_acc: 0.9308
+Epoch 2/5
+ - 94s - loss: 0.4960 - acc: 0.9084 - val\_loss: 0.3554 - val\_acc: 0.9462
+Epoch 3/5
+ - 95s - loss: 0.3415 - acc: 0.9359 - val\_loss: 0.2099 - val\_acc: 0.9769
+Epoch 4/5
+ - 94s - loss: 0.2825 - acc: 0.9359 - val\_loss: 0.1544 - val\_acc: 0.9769
+Epoch 5/5
+ - 94s - loss: 0.2440 - acc: 0.9505 - val\_loss: 0.1167 - val\_acc: 0.9769
+ran fit\_generator
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}Prepare test data for evaluation}
+        
+        \PY{c+c1}{\PYZsh{}NOTE NEED TO USE TRAINING MAX TO BE CONSISTENT WITH THE NEURAL NETWORK}
+        \PY{c+c1}{\PYZsh{}find max length (time) in testing data}
+        \PY{c+c1}{\PYZsh{}testingMax = find\PYZus{}max(\PYZsq{}/home/ec2\PYZhy{}user/SageMaker\PYZsq{},\PYZsq{}testList.txt\PYZsq{}, \PYZsq{}/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2\PYZus{}testData\PYZsq{})}
+        \PY{c+c1}{\PYZsh{}maxTime = testingMax}
+        \PY{c+c1}{\PYZsh{}print(testingMax)}
+        \PY{c+c1}{\PYZsh{}print(\PYZsq{}found testingMax\PYZsq{})}
+        
+        \PY{c+c1}{\PYZsh{} initialize testing generator}
+        \PY{n}{testGen} \PY{o}{=} \PY{n}{data\PYZus{}generator}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{testList.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2\PYZus{}testData}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{n}{trainingMax}\PY{p}{,} \PY{n}{mode} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{eval}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{generated testing set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+generated testing set
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{}Now let us evaluate our model [EVALUATE]}
+        
+        \PY{c+c1}{\PYZsh{}with evaluate\PYZus{}generator}
+        \PY{n}{results} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{evaluate\PYZus{}generator}\PY{p}{(}\PY{n}{testGen}\PY{p}{,} \PY{n}{steps} \PY{o}{=} \PY{l+m+mi}{13}\PY{p}{,} \PY{n}{max\PYZus{}queue\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{workers}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{use\PYZus{}multiprocessing}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{results}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{metrics\PYZus{}names}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}with evauluate}
+        \PY{c+c1}{\PYZsh{}results = model.evaluate(x=testSamples, y=testHotlabels, batch\PYZus{}size=26, verbose=1, sample\PYZus{}weight=None, steps=None)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+13/13 [==============================] - 14s 1s/step
+[0.14795524455033815, 0.9763313623575064]
+['loss', 'acc']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}[PREDICT] (w/TestData I kept aside as well)}
+         
+         \PY{c+c1}{\PYZsh{}predictGen = data\PYZus{}generator(\PYZsq{}/home/ec2\PYZhy{}user/SageMaker\PYZsq{}, \PYZsq{}testList.txt\PYZsq{}, \PYZsq{}/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2\PYZus{}testData\PYZsq{}, 13, trainingMax, mode = \PYZdq{}eval\PYZdq{})}
+         \PY{c+c1}{\PYZsh{}print(\PYZsq{}generated predict set\PYZsq{})}
+         
+         \PY{c+c1}{\PYZsh{}with predict\PYZus{}generator}
+         \PY{c+c1}{\PYZsh{}need a different generator(just grab batches of data but do not know answer)}
+         \PY{c+c1}{\PYZsh{}predictions = model.predict\PYZus{}generator(testGen, steps=13, max\PYZus{}queue\PYZus{}size=10, workers=1, use\PYZus{}multiprocessing=False, verbose=1)}
+         \PY{c+c1}{\PYZsh{}print(predictions)}
+         
+         \PY{c+c1}{\PYZsh{}with predict}
+         \PY{c+c1}{\PYZsh{}preprocess STFT data in TestData folder!}
+         \PY{c+c1}{\PYZsh{}see getLabels\PYZus{}stackedData3.py, but don\PYZsq{}t give labels}
+         \PY{n}{hotlabels}\PY{p}{,} \PY{n}{samples} \PY{o}{=} \PY{n}{get\PYZus{}labels\PYZus{}and\PYZus{}samples}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{testList.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/ec2\PYZhy{}user/SageMaker/aws\PYZus{}pilotwhales2\PYZus{}testData}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{trainingMax}\PY{p}{)}
+         \PY{n}{hotlabels\PYZus{}pred} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{samples}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{13}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{steps}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+made variables
+got data files in a list
+['STFT\_F\_gm266a\_event1016\_buzz344.npy', 'STFT\_F\_gm185b\_event415\_minibuzz148.npy', 'STFT\_F\_gm267a\_event706\_buzz176.npy', 'STFT\_F\_gm208a\_event236\_minibuzz4.npy', 'STFT\_F\_gm266a\_event939\_buzz280.npy', 'STFT\_F\_gm185b\_event423\_minibuzz154.npy', 'STFT\_F\_gm267a\_event336\_buzz20.npy', 'STFT\_F\_gm187b\_event2312\_minibuzz147.npy', 'STFT\_F\_gm266a\_event1078\_buzz394.npy', 'STFT\_F\_gm187b\_event336\_minibuzz33.npy', 'STFT\_F\_gm266a\_event1298\_buzz555.npy', 'STFT\_F\_gm185b\_event299\_minibuzz94.npy', 'STFT\_F\_gm267a\_event1635\_buzz436.npy', 'STFT\_F\_gm185b\_event389\_minibuzz138.npy', 'STFT\_F\_gm266a\_event1119\_buzz422.npy', 'STFT\_F\_gm187b\_event1919\_minibuzz124.npy', 'STFT\_F\_gm267a\_event460\_buzz68.npy', 'STFT\_F\_gm185b\_event256\_minibuzz77.npy', 'STFT\_F\_gm208a\_event660\_buzz85.npy', 'STFT\_F\_gm208a\_event100\_minibuzz3.npy', 'STFT\_F\_gm187b\_event660\_buzz84.npy', 'STFT\_F\_gm185b\_event398\_minibuzz142.npy', 'STFT\_F\_gm267a\_event846\_buzz251.npy', 'STFT\_F\_gm185b\_event262\_minibuzz81.npy', 'STFT\_F\_gm266a\_event796\_buzz183.npy', 'STFT\_F\_gm185b\_event205\_minibuzz47.npy', 'STFT\_F\_gm266a\_event1129\_buzz432.npy', 'STFT\_F\_gm187b\_event48\_minibuzz3.npy', 'STFT\_F\_gm266a\_event521\_buzz87.npy', 'STFT\_F\_gm187b\_event2314\_minibuzz148.npy', 'STFT\_F\_gm267a\_event550\_buzz85.npy', 'STFT\_F\_gm187b\_event1589\_minibuzz83.npy', 'STFT\_F\_gm266a\_event516\_buzz82.npy', 'STFT\_F\_gm185b\_event232\_minibuzz64.npy', 'STFT\_F\_gm267a\_event623\_buzz130.npy', 'STFT\_F\_gm185b\_event175\_minibuzz26.npy', 'STFT\_F\_gm267a\_event1513\_buzz379.npy', 'STFT\_F\_gm187b\_event1925\_minibuzz125.npy', 'STFT\_F\_gm266a\_event511\_buzz77.npy', 'STFT\_F\_gm188a\_event30\_minibuzz4.npy', 'STFT\_F\_gm266a\_event717\_buzz109.npy', 'STFT\_F\_gm185b\_event353\_minibuzz110.npy', 'STFT\_F\_gm185b\_event460\_buzz13.npy', 'STFT\_F\_gm187b\_event2186\_minibuzz136.npy', 'STFT\_F\_gm266a\_event141\_buzz23.npy', 'STFT\_F\_gm187a\_event260\_minibuzz5.npy', 'STFT\_F\_gm266a\_event1290\_buzz547.npy', 'STFT\_F\_gm185b\_event432\_minibuzz160.npy', 'STFT\_F\_gm209c\_event92\_buzz3.npy', 'STFT\_F\_gm185b\_event171\_minibuzz23.npy', 'STFT\_F\_gm187b\_event192\_buzz38.npy', 'STFT\_F\_gm208a\_event406\_minibuzz12.npy', 'STFT\_F\_gm266a\_event477\_buzz70.npy', 'STFT\_F\_gm185b\_event228\_minibuzz61.npy', 'STFT\_F\_gm266a\_event1045\_buzz361.npy', 'STFT\_F\_gm187b\_event197\_minibuzz22.npy', 'STFT\_F\_gm267a\_event1623\_buzz424.npy', 'STFT\_F\_gm187a\_event173\_minibuzz4.npy', 'STFT\_F\_gm187b\_event1408\_buzz177.npy', 'STFT\_F\_gm187b\_event1416\_minibuzz77.npy', 'STFT\_F\_gm266a\_event1258\_buzz533.npy', 'STFT\_F\_gm186b\_event39\_minibuzz3.npy', 'STFT\_F\_gm208a\_event369\_buzz19.npy', 'STFT\_F\_gm187b\_event765\_minibuzz61.npy', 'STFT\_F\_gm266a\_event772\_buzz161.npy', 'STFT\_F\_gm186b\_event41\_minibuzz5.npy', 'STFT\_F\_gm266a\_event227\_buzz38.npy', 'STFT\_F\_gm185b\_event184\_minibuzz33.npy', 'STFT\_F\_gm267a\_event350\_buzz33.npy', 'STFT\_F\_gm187b\_event2101\_minibuzz128.npy', 'STFT\_F\_gm209c\_event577\_buzz14.npy', 'STFT\_F\_gm187b\_event202\_minibuzz25.npy', 'STFT\_F\_gm209a\_event107\_buzz36.npy', 'STFT\_F\_gm187b\_event2141\_minibuzz133.npy', 'STFT\_F\_gm185b\_event537\_buzz30.npy', 'STFT\_F\_gm185b\_event163\_minibuzz16.npy', 'STFT\_F\_gm266a\_event726\_buzz118.npy', 'STFT\_F\_gm187b\_event2100\_minibuzz127.npy', 'STFT\_F\_gm267a\_event342\_buzz25.npy', 'STFT\_F\_gm187b\_event1595\_minibuzz87.npy', 'STFT\_F\_gm267a\_event215\_buzz7.npy', 'STFT\_F\_gm208a\_event767\_minibuzz22.npy', 'STFT\_F\_gm266a\_event451\_buzz65.npy', 'STFT\_F\_gm185b\_event203\_minibuzz46.npy', 'STFT\_F\_gm266a\_event1323\_buzz563.npy', 'STFT\_F\_gm187b\_event728\_minibuzz54.npy', 'STFT\_F\_gm208a\_event578\_buzz60.npy', 'STFT\_F\_gm185b\_event367\_minibuzz121.npy', 'STFT\_F\_gm266a\_event892\_buzz258.npy', 'STFT\_F\_gm187b\_event744\_minibuzz57.npy', 'STFT\_F\_gm209c\_event578\_buzz15.npy', 'STFT\_F\_gm187b\_event176\_minibuzz20.npy', 'STFT\_F\_gm267a\_event1559\_buzz409.npy', 'STFT\_F\_gm187b\_event2536\_minibuzz172.npy', 'STFT\_F\_gm187a\_event159\_buzz3.npy', 'STFT\_F\_gm185b\_event200\_minibuzz44.npy', 'STFT\_F\_gm266a\_event1326\_buzz566.npy', 'STFT\_F\_gm185b\_event349\_minibuzz108.npy', 'STFT\_F\_gm208a\_event740\_buzz110.npy', 'STFT\_F\_gm185b\_event483\_minibuzz164.npy', 'STFT\_F\_gm267a\_event1506\_buzz372.npy', 'STFT\_F\_gm187b\_event534\_minibuzz44.npy', 'STFT\_F\_gm266a\_event998\_buzz326.npy', 'STFT\_F\_gm185b\_event181\_minibuzz30.npy', 'STFT\_F\_gm266a\_event727\_buzz119.npy', 'STFT\_F\_gm187b\_event306\_minibuzz27.npy', 'STFT\_F\_gm208a\_event496\_buzz45.npy', 'STFT\_F\_gm187b\_event1600\_minibuzz89.npy', 'STFT\_F\_gm266a\_event1359\_buzz575.npy', 'STFT\_F\_gm208a\_event1149\_minibuzz29.npy', 'STFT\_F\_gm267a\_event1442\_buzz360.npy', 'STFT\_F\_gm185b\_event147\_minibuzz2.npy', 'STFT\_F\_gm187b\_event1479\_buzz185.npy', 'STFT\_F\_gm187b\_event1848\_minibuzz116.npy', 'STFT\_F\_gm266a\_event881\_buzz247.npy', 'STFT\_F\_gm185b\_event394\_minibuzz140.npy', 'STFT\_F\_gm266a\_event1247\_buzz522.npy', 'STFT\_F\_gm187b\_event198\_minibuzz23.npy', 'STFT\_F\_gm267a\_event789\_buzz236.npy', 'STFT\_F\_gm185b\_event281\_minibuzz90.npy', 'STFT\_F\_gm267a\_event1303\_buzz342.npy', 'STFT\_F\_gm187b\_event872\_minibuzz68.npy', 'STFT\_F\_gm266a\_event120\_buzz2.npy', 'STFT\_F\_gm187b\_event2429\_minibuzz166.npy', 'STFT\_F\_gm266a\_event1248\_buzz523.npy', 'STFT\_F\_gm185b\_event429\_minibuzz157.npy', 'STFT\_F\_gm267a\_event1549\_buzz399.npy', 'STFT\_F\_gm187b\_event337\_minibuzz34.npy', 'STFT\_F\_gm266a\_event523\_buzz89.npy', 'STFT\_F\_gm187b\_event54\_minibuzz9.npy', 'STFT\_F\_gm267a\_event474\_buzz82.npy', 'STFT\_F\_gm185b\_event219\_minibuzz55.npy', 'STFT\_F\_gm187b\_event2341\_buzz241.npy', 'STFT\_F\_gm187b\_event2555\_minibuzz175.npy', 'STFT\_F\_gm266a\_event1025\_buzz348.npy', 'STFT\_F\_gm185b\_event226\_minibuzz60.npy', 'STFT\_F\_gm267a\_event668\_buzz155.npy', 'STFT\_F\_gm185b\_event424\_minibuzz155.npy', 'STFT\_F\_gm266a\_event1200\_buzz491.npy', 'STFT\_F\_gm185b\_event378\_minibuzz131.npy', 'STFT\_F\_gm187b\_event2348\_buzz246.npy', 'STFT\_F\_gm187b\_event2192\_minibuzz140.npy', 'STFT\_F\_gm187b\_event201\_buzz43.npy', 'STFT\_F\_gm185b\_event315\_minibuzz103.npy', 'STFT\_F\_gm266a\_event740\_buzz129.npy', 'STFT\_F\_gm185b\_event193\_minibuzz38.npy', 'STFT\_F\_gm187b\_event1150\_buzz131.npy', 'STFT\_F\_gm187b\_event358\_minibuzz37.npy', 'STFT\_F\_gm267a\_event1516\_buzz382.npy', 'STFT\_F\_gm187b\_event175\_minibuzz19.npy', 'STFT\_F\_gm266a\_event767\_buzz156.npy', 'STFT\_F\_gm187b\_event2644\_minibuzz182.npy', 'STFT\_F\_gm266a\_event832\_buzz219.npy', 'STFT\_F\_gm185b\_event297\_minibuzz92.npy', 'STFT\_F\_gm266a\_event182\_buzz33.npy', 'STFT\_F\_gm187b\_event2189\_minibuzz138.npy', 'STFT\_F\_gm267a\_event768\_buzz215.npy', 'STFT\_F\_gm185b\_event266\_minibuzz83.npy', 'STFT\_F\_gm208a\_event438\_buzz32.npy', 'STFT\_F\_gm187b\_event764\_minibuzz60.npy', 'STFT\_F\_gm266a\_event530\_buzz96.npy', 'STFT\_F\_gm185b\_event273\_minibuzz85.npy', 'STFT\_F\_gm267a\_event975\_buzz263.npy', 'STFT\_F\_gm187b\_event2197\_minibuzz141.npy', 'STFT\_F\_gm266a\_event1118\_buzz421.npy', 'STFT\_F\_gm187b\_event2646\_minibuzz183.npy', 'STFT\_F\_gm267a\_event1301\_buzz340.npy', 'STFT\_F\_gm187a\_event166\_minibuzz2.npy', 'STFT\_F\_gm187b\_event112\_buzz26.npy', 'STFT\_F\_gm187b\_event2055\_minibuzz126.npy']
+changed to files folder
+[1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+label loop done
+sample loop done
+hotlabels and samples in np arrays
+170/170 [==============================] - 12s 70ms/step
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}see if prediction results are right (compare hot labels I generate with what the model guesses)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{hotlabels}\PY{p}{)}
+         \PY{n}{hotlabels} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{utils}\PY{o}{.}\PY{n}{to\PYZus{}categorical}\PY{p}{(}\PY{n}{hotlabels}\PY{p}{,} \PY{n}{num\PYZus{}classes}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{hotlabels}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{hotlabels\PYZus{}pred}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{hotlabels}\PY{o}{\PYZhy{}}\PY{n}{hotlabels\PYZus{}pred}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+ 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+ 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+ 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+ 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0]
+[[0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]]
+[[2.40261108e-02 9.75973904e-01]
+ [9.85730529e-01 1.42694665e-02]
+ [1.04926759e-02 9.89507377e-01]
+ [6.12970352e-01 3.87029648e-01]
+ [9.83259524e-05 9.99901652e-01]
+ [8.19318175e-01 1.80681780e-01]
+ [3.40281069e-01 6.59718931e-01]
+ [7.04672337e-01 2.95327723e-01]
+ [3.06612370e-03 9.96933818e-01]
+ [9.97876883e-01 2.12311768e-03]
+ [3.30185965e-02 9.66981411e-01]
+ [9.27680671e-01 7.23193213e-02]
+ [7.08818762e-03 9.92911756e-01]
+ [9.99740541e-01 2.59491790e-04]
+ [2.11093798e-01 7.88906157e-01]
+ [9.99687433e-01 3.12529068e-04]
+ [3.77866998e-03 9.96221304e-01]
+ [9.96991873e-01 3.00813606e-03]
+ [1.93653345e-01 8.06346655e-01]
+ [7.86902845e-01 2.13097081e-01]
+ [2.47077569e-01 7.52922475e-01]
+ [9.96346176e-01 3.65381432e-03]
+ [3.01980749e-02 9.69801903e-01]
+ [9.21250105e-01 7.87498653e-02]
+ [3.11312415e-02 9.68868732e-01]
+ [7.74845302e-01 2.25154683e-01]
+ [3.81132821e-03 9.96188700e-01]
+ [9.94258881e-01 5.74114546e-03]
+ [1.07408669e-02 9.89259183e-01]
+ [7.72338808e-01 2.27661163e-01]
+ [7.68809160e-03 9.92311895e-01]
+ [9.90190864e-01 9.80912708e-03]
+ [2.43038788e-01 7.56961226e-01]
+ [9.63779986e-01 3.62200066e-02]
+ [2.29086704e-03 9.97709155e-01]
+ [5.48050940e-01 4.51949030e-01]
+ [1.90895990e-01 8.09104085e-01]
+ [9.99973774e-01 2.62276335e-05]
+ [1.65986340e-03 9.98340130e-01]
+ [9.05934572e-01 9.40654278e-02]
+ [1.85655486e-02 9.81434464e-01]
+ [8.58635724e-01 1.41364276e-01]
+ [1.89196914e-02 9.81080234e-01]
+ [9.98422980e-01 1.57698512e-03]
+ [2.96001174e-02 9.70399857e-01]
+ [9.81703699e-01 1.82962734e-02]
+ [4.71728941e-04 9.99528289e-01]
+ [8.49572957e-01 1.50427014e-01]
+ [1.45794556e-01 8.54205430e-01]
+ [6.11963034e-01 3.88037026e-01]
+ [2.92552531e-01 7.07447469e-01]
+ [9.44470048e-01 5.55299930e-02]
+ [5.75780810e-04 9.99424219e-01]
+ [9.87983823e-01 1.20161446e-02]
+ [1.21138855e-05 9.99987841e-01]
+ [1.07329890e-01 8.92670155e-01]
+ [1.23468302e-02 9.87653136e-01]
+ [9.52240586e-01 4.77594063e-02]
+ [8.51840734e-01 1.48159310e-01]
+ [9.52648461e-01 4.73515689e-02]
+ [3.29341516e-02 9.67065871e-01]
+ [9.78673756e-01 2.13262904e-02]
+ [1.83083594e-05 9.99981642e-01]
+ [9.99963284e-01 3.66819841e-05]
+ [1.44869061e-02 9.85513151e-01]
+ [9.79193389e-01 2.08065677e-02]
+ [2.16025865e-06 9.99997854e-01]
+ [9.28357422e-01 7.16425627e-02]
+ [1.29157417e-02 9.87084210e-01]
+ [9.99854207e-01 1.45729660e-04]
+ [3.15981060e-02 9.68401909e-01]
+ [9.93528306e-01 6.47165207e-03]
+ [7.44508754e-04 9.99255478e-01]
+ [9.99811709e-01 1.88278820e-04]
+ [5.15174428e-08 1.00000000e+00]
+ [5.79902530e-01 4.20097500e-01]
+ [1.19034406e-02 9.88096595e-01]
+ [9.99548376e-01 4.51589265e-04]
+ [2.34761480e-02 9.76523817e-01]
+ [8.83285999e-01 1.16714016e-01]
+ [4.54405367e-01 5.45594633e-01]
+ [9.11153376e-01 8.88466537e-02]
+ [1.33630650e-07 9.99999881e-01]
+ [6.04577303e-01 3.95422727e-01]
+ [6.85150444e-04 9.99314904e-01]
+ [8.52661192e-01 1.47338808e-01]
+ [2.91420259e-02 9.70857978e-01]
+ [9.95682478e-01 4.31757374e-03]
+ [6.65024738e-04 9.99334991e-01]
+ [8.80163968e-01 1.19835980e-01]
+ [2.68638287e-05 9.99973178e-01]
+ [9.99951243e-01 4.87525540e-05]
+ [9.10327770e-03 9.90896761e-01]
+ [9.01527882e-01 9.84721407e-02]
+ [9.88036513e-01 1.19634196e-02]
+ [7.36966550e-01 2.63033450e-01]
+ [2.79004264e-10 1.00000000e+00]
+ [9.98985350e-01 1.01468549e-03]
+ [5.85762262e-01 4.14237648e-01]
+ [7.12388217e-01 2.87611812e-01]
+ [4.47874330e-03 9.95521307e-01]
+ [7.38313854e-01 2.61686236e-01]
+ [1.26392406e-03 9.98736084e-01]
+ [7.33215332e-01 2.66784668e-01]
+ [1.15848510e-02 9.88415122e-01]
+ [7.75879562e-01 2.24120408e-01]
+ [1.33182362e-01 8.66817653e-01]
+ [8.94787252e-01 1.05212808e-01]
+ [1.21897215e-03 9.98781025e-01]
+ [9.88267839e-01 1.17321257e-02]
+ [1.57876648e-02 9.84212339e-01]
+ [7.90960252e-01 2.09039807e-01]
+ [1.43220931e-01 8.56779039e-01]
+ [8.49701047e-01 1.50299013e-01]
+ [2.21068963e-01 7.78931022e-01]
+ [9.99860406e-01 1.39532247e-04]
+ [1.10146310e-02 9.88985419e-01]
+ [8.58715057e-01 1.41284913e-01]
+ [4.10936121e-03 9.95890617e-01]
+ [7.96293199e-01 2.03706786e-01]
+ [4.68575256e-03 9.95314240e-01]
+ [8.43008041e-01 1.56991929e-01]
+ [8.64560279e-05 9.99913573e-01]
+ [8.52147162e-01 1.47852883e-01]
+ [4.12997603e-02 9.58700240e-01]
+ [9.98261154e-01 1.73889671e-03]
+ [4.20479961e-02 9.57951963e-01]
+ [9.98794436e-01 1.20552815e-03]
+ [5.90285882e-02 9.40971434e-01]
+ [1.00000000e+00 2.57623949e-08]
+ [1.05414993e-05 9.99989510e-01]
+ [8.36389244e-01 1.63610756e-01]
+ [4.15500790e-01 5.84499180e-01]
+ [8.97045910e-01 1.02954149e-01]
+ [6.10172574e-04 9.99389768e-01]
+ [7.92500198e-01 2.07499877e-01]
+ [3.13340127e-03 9.96866643e-01]
+ [9.54839766e-01 4.51602489e-02]
+ [4.85407450e-04 9.99514580e-01]
+ [9.96355534e-01 3.64450109e-03]
+ [1.62215456e-01 8.37784469e-01]
+ [7.95575321e-01 2.04424664e-01]
+ [1.11403624e-02 9.88859653e-01]
+ [8.65327597e-01 1.34672359e-01]
+ [1.03446509e-05 9.99989629e-01]
+ [5.79867840e-01 4.20132160e-01]
+ [1.60029985e-03 9.98399675e-01]
+ [9.99999881e-01 1.13721697e-07]
+ [3.12210441e-01 6.87789619e-01]
+ [9.98945177e-01 1.05483364e-03]
+ [2.43757255e-02 9.75624323e-01]
+ [9.52482760e-01 4.75172400e-02]
+ [6.30211376e-04 9.99369800e-01]
+ [9.29385841e-01 7.06141517e-02]
+ [1.24694488e-03 9.98753071e-01]
+ [9.00344789e-01 9.96551588e-02]
+ [1.68310441e-02 9.83168960e-01]
+ [9.70587373e-01 2.94126607e-02]
+ [6.23341128e-02 9.37665820e-01]
+ [9.99595940e-01 4.04100341e-04]
+ [5.14960084e-05 9.99948502e-01]
+ [9.77607906e-01 2.23920532e-02]
+ [3.52914259e-02 9.64708567e-01]
+ [9.41245556e-01 5.87544553e-02]
+ [1.79495916e-01 8.20504069e-01]
+ [9.13105786e-01 8.68941620e-02]
+ [1.61105376e-02 9.83889461e-01]
+ [1.00000000e+00 3.43997364e-08]
+ [1.20113484e-07 9.99999881e-01]
+ [9.67070997e-01 3.29289734e-02]]
+[False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False  True False False  True False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False  True False
+ False False  True False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False False False False False False False False False False False
+ False False]
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

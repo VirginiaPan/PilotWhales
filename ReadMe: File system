@@ -1,0 +1,122 @@
+FOLDERS: 
+aws_pilotwhales2: contains 676 .npy files for training and validation
+
+aws_pilotwhales2_testData: contains 170 .npy files for testing
+
+SmallTest: 
+    TrainSmall.ipynb: OLD, has all layers and runs on small local data set (6 STFTs) 
+    Layers_1_5_6_local.py: OLD, was only using 1st, 5th and 6th layers; layers 2, 3, and 4 are WRONG
+    list.txt: List of names of 6 STFT files
+    6 STFT files
+_________________________________________________________________________________________________________________________________________
+
+DATA LISTS: 
+trainListALL.txt: lists all the training and validation data file names (lists 676 .npy file names)
+
+trainList.txt: lists all training data file names (lists 546 .npy files names, top 546 from trainListsALL.txt)
+
+validList.txt: Lists all validation data file names (lists 130 .npy file names, bottom 130 from trainListsALL.txt)
+
+testList.txt: lists all the testing data filenames (lists 170 .npy file names)
+
+TopList.txt: was using to test how many SFTF files the model could handle/run on at once (currently lists 169 .npy files, 1/4 of the total 676 training .npy files)
+
+ls_aws_pilotwhales2.txt: lists all files in aws_pilotwhales2 folder that are used for training (same files listed in trainListALL.txt, except sorted by filename- not randomized) 
+
+ls_aws_pilotwhales2_testData.txt: lists all files in aws_pilotwhales2_testData folder that are used for testing (same files listed in testList.txt, except sorted by filename- not randomized) 
+___________________________________________________________________________________________________________________________________________
+
+MODEL SCRIPTS: 
+
+Model2_eval&predict.ipynb: 
+    Runs model with .fit_generator, .evaluate_generator, and .predict [NOTE: NOT .predict_generator]
+    Currently running successfully with 546 training data, 130 validation data, and 170 testing data (ran evaluate and predict on these) 
+    97.6% accuracy on testing data! 
+    NOTE: clean methods for find_max, get_labels_and_samples, and data_generator
+    
+WorkingModel1.ipynb: 
+    Runs model with .fit_generator
+    Currently running successfully with 546 training data, 130 validation data
+    NOTE: not cleany in methods except data_generator
+    No evaluate and predict
+
+TrainAll2-fit_generator_VAdesktop.py: 
+    uploaded from desktop, works with .fit_generator to train in batches with all data
+
+TrainAll2-fit_generator.ipynb: 
+    FAILED ATTEMPT- FILE NOT FOUND ERROR? MEMORY ERRROR?, see WorkingModel1.ipynb for sucess!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TrainAll2.ipynb: 
+    Working on smaller top list
+    
+TrainAll-Gerry.ipynb: 
+    Working on smaller top list
+    
+TrainAll.ipynb: 
+    INCORRECT model, incorrect 2D convoultion kernel size
+________________________________________________________________________________________________________________________________________    
+    
+FILE TRANSFER SCRIPTS: 
+   
+testBucket_Loop.ipynb: 
+    Gets list of files from s3 bucket to SageMaker space
+    
+testBucket_Gerry.ipynb: 
+    Get file from s3 bucket to SageMaker space
+_________________________________________________________________________________________________________________________________________
+
+NEW FOR 2008 & 2011 DATA!
+
+TEXT FILES:
+
+2008.txt: 
+    Lists 230 .npy files from all 2008 buzzes and minibuzzes
+    Use to upload needed files to s3
+    
+2008_cut.txt:
+    List 227 .npy files that were not larger then the max in the training set (14,251kb)
+    Use to test model
+
+2011_cut.txt:
+    Lists 575 .npy files from all 2011 buzzes and minibuzzes that were shorter than the training max (.npy file size <14,251kb)
+    Use to upload needed files to s3
+    Use to test model
+_________________________________________________________________________________________________________________________________________
+
+FOLDERS: 
+
+aws_pilotwhales2_2008:
+    Contains all 230 minibuzz and buzz STFT .npy files
+
+aws_pilotwhales2_2011:
+    Contains 575 minibuzz and buzz STFT .npy files (excludes 4 that were longer than training data maximum length) 
+__________________________________________________________________________________________________________________________________________
+
+SCRIPTS:
+
+testBucket_Loop_2008_2011.ipynb:
+    Use to read in 2008 .npy files from s3
+    
+Model2_eval&predict_2008_2011.ipynb:
+    Only modified and ran sections 8, 9 to evaluate 2008 data
+__________________________________________________________________________________________________________________________________________
+
+RERUN MODEL
+
+Model2_eval&predict_retrainShuffle.ipynb
+    Use to retrain and test model with mix of 2010,2011&2008 data
+
+testBucket_Loop_folder.ipynb
+    Use to move files from folder in s3 bucket to jupyter notebook folder
+
+FOLDERS:
+
+aws_pilotwhalesALL:
+    contains...
+    All data from 2011 (575 buzzes and minibuzzes) 
+    All data from 2008 (230 buzzes and minibuzzes) 
+    846 choosen data from 2010 (423 buzzes, 423 minibuzzes) 
+
+
+    
+
